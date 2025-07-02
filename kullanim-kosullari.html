@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kullanım Koşulları - Bozkurt Ajans</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8A2BE2',secondary:'#00BFFF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.gradient-bg {
+    background: linear-gradient(135deg, #8A2BE2, #00BFFF);
+}
+.gradient-text {
+    background: linear-gradient(90deg, #8A2BE2, #00BFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8A2BE2, #00BFFF, transparent);
+}
+.hamburger {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #fff;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+.hamburger span:nth-child(1) {
+    top: 6px;
+}
+.hamburger span:nth-child(2) {
+    top: 12px;
+}
+.hamburger span:nth-child(3) {
+    top: 18px;
+}
+.hamburger.open span:nth-child(1) {
+    top: 12px;
+    transform: rotate(135deg);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+.hamburger.open span:nth-child(3) {
+    top: 12px;
+    transform: rotate(-135deg);
+}
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+.mobile-menu.open {
+    transform: translateX(0);
+}
+.toc-link.active {
+    color: #8A2BE2;
+    font-weight: 600;
+    border-left: 3px solid #8A2BE2;
+}
+.toc-link:hover {
+    color: #8A2BE2;
+}
+</style>
+</head>
+<body class="bg-white overflow-x-hidden">
+<!-- Header -->
+<header class="fixed w-full z-50 glassmorphism">
+    <div class="container mx-auto px-6 py-4">
+        <nav class="flex items-center justify-between">
+            <a href="#" class="text-3xl font-['Pacifico'] text-white">Bozkurt Ajans</a>
+            <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Ana Sayfa</a>
+                    <a href="index.html#services" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Hizmetler</a>
+                    <a href="index.html#portfolio" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Portfolyo</a>
+                    <a href="index.html#contact" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">İletişim</a>
+                    <a href="https://discord.gg/example" target="_blank" rel="noopener noreferrer" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">İletişim </a>
+
+            </div>
+            <div class="md:hidden">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full md:w-64 bg-white shadow-lg z-50">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-gray-800 hover:text-primary">
+                <div class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-close-line ri-lg"></i>
+                </div>
+            </button>
+        </div>
+        <div class="flex flex-col px-6 py-4 space-y-6">
+            <a href="index.html" data-readdy="true" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Ana Sayfa</a>
+            <a href="#" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Hizmetler</a>
+            <a href="#" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Portfolyo</a>
+            <a href="#" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">İletişim</a>
+            <a href="#" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 text-center whitespace-nowrap">Ücretsiz Danışmanlık</a>
+        </div>
+    </div>
+</header>
+
+<!-- Page Header -->
+<section class="pt-32 pb-16 gradient-bg text-white">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center mb-4">
+            <a href="index.html" data-readdy="true" class="flex items-center text-white hover:text-white/80 transition-colors duration-300">
+                <div class="w-6 h-6 flex items-center justify-center mr-2">
+                    <i class="ri-arrow-left-line"></i>
+                </div>
+                <span>Ana Sayfaya Dön</span>
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">Kullanım Koşulları</h1>
+        <p class="text-lg opacity-90 max-w-3xl">Bu sayfada, hizmetlerimizi kullanırken uymanız gereken şartları ve koşulları bulabilirsiniz. Lütfen dikkatle okuyunuz.</p>
+        <div class="mt-6">
+            <p class="text-sm opacity-80">Son Güncelleme: 2 Temmuz 2025</p>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-16">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Table of Contents - Desktop -->
+            <div class="hidden lg:block w-full lg:w-1/4 sticky top-32 self-start">
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">İçindekiler</h3>
+                    <ul class="space-y-3" id="toc-desktop">
+                        <li><a href="#giris" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">1. Giriş ve Kapsam</a></li>
+                        <li><a href="#hizmet-kullanim" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">2. Hizmet Kullanım Şartları</a></li>
+                        <li><a href="#kullanici-sorumluluk" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">3. Kullanıcı Sorumlulukları</a></li>
+                        <li><a href="#fikri-mulkiyet" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">4. Fikri Mülkiyet Hakları</a></li>
+                        <li><a href="#hizmet-kisitlama" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">5. Hizmet Kısıtlamaları</a></li>
+                        <li><a href="#odeme-kosul" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">6. Ödeme Koşulları</a></li>
+                        <li><a href="#gizlilik-guvenlik" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">7. Gizlilik ve Veri Güvenliği</a></li>
+                        <li><a href="#sozlesme-degisiklik" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">8. Sözleşme Değişiklikleri</a></li>
+                        <li><a href="#iletisim-bilgi" class="toc-link block pl-3 py-1 text-gray-600 hover:text-primary transition-colors duration-200 border-l-3 border-transparent">9. İletişim Bilgileri</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="w-full lg:w-3/4">
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <!-- Introduction -->
+                    <section id="giris" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">1. Giriş ve Kapsam</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans'in ("Şirket", "biz", "bizim") web sitesini ve hizmetlerini kullanımınız aşağıdaki kullanım koşullarına tabidir. Bu web sitesine erişerek veya hizmetlerimizi kullanarak, bu koşulları kabul etmiş sayılırsınız.</p>
+                            
+                            <p class="mb-4">Bu kullanım koşulları, Bozkurt Ajans web sitesi ve tüm alt sayfaları, mobil uygulamaları, API'leri ve diğer ilgili hizmetleri kapsar. Hizmetlerimizi kullanmadan önce bu koşulları dikkatlice okumanızı öneririz.</p>
+                            
+                            <p class="mb-4">Bu kullanım koşulları, sizinle Bozkurt Ajans arasında yasal olarak bağlayıcı bir anlaşmadır. Eğer bu koşulları kabul etmiyorsanız, lütfen web sitemizi kullanmayın ve hizmetlerimizden yararlanmayın.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Service Usage Terms -->
+                    <section id="hizmet-kullanim" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">2. Hizmet Kullanım Şartları</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans'in sunduğu hizmetleri kullanabilmek için aşağıdaki şartları kabul etmeniz gerekmektedir:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Kullanıcılar en az 18 yaşında olmalı veya ebeveyn/vasi gözetiminde hizmetlerimizi kullanmalıdır.</li>
+                                <li>Hesap oluşturulurken doğru ve güncel bilgiler sağlanmalıdır.</li>
+                                <li>Hesap güvenliğinden ve gizliliğinden kullanıcı sorumludur.</li>
+                                <li>Hizmetlerimizi yasalara uygun şekilde ve başkalarının haklarına saygı göstererek kullanmalısınız.</li>
+                                <li>Şirket, herhangi bir kullanıcının hesabını önceden bildirmeksizin askıya alma veya sonlandırma hakkını saklı tutar.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Bozkurt Ajans, sunduğu hizmetleri dilediği zaman değiştirme, güncelleme veya sonlandırma hakkına sahiptir. Hizmetlerde yapılacak önemli değişiklikler hakkında kullanıcıları bilgilendirmek için makul çaba gösterilecektir.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- User Responsibilities -->
+                    <section id="kullanici-sorumluluk" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">3. Kullanıcı Sorumlulukları</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Hizmetlerimizi kullanırken aşağıdaki sorumlulukları kabul etmiş olursunuz:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Yasadışı, zararlı, tehditkar, taciz edici, iftira niteliğinde, müstehcen veya başka şekilde sakıncalı içerik paylaşmamak.</li>
+                                <li>Başkalarının fikri mülkiyet haklarını ihlal eden içerik yüklememek veya paylaşmamak.</li>
+                                <li>Virüs, kötü amaçlı yazılım veya diğer zararlı kodları yaymamak.</li>
+                                <li>Sistemlerimize yetkisiz erişim sağlamaya çalışmamak.</li>
+                                <li>Hizmetlerimizi spam, veri madenciliği veya otomatik veri toplama amacıyla kullanmamak.</li>
+                                <li>Diğer kullanıcıların hizmetlerimizi kullanmasını engelleyecek şekilde davranmamak.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Bu sorumlulukların ihlali durumunda, hesabınızın askıya alınması veya sonlandırılması, içeriğinizin kaldırılması ve gerekli durumlarda yasal işlem başlatılması söz konusu olabilir.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Intellectual Property Rights -->
+                    <section id="fikri-mulkiyet" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">4. Fikri Mülkiyet Hakları</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans web sitesi ve hizmetlerinde yer alan tüm içerik, tasarım, Bozkurt Ajans, ticari markalar, yazılım ve diğer materyaller şirketimize veya lisans verenlere aittir ve telif hakkı, ticari marka ve diğer fikri mülkiyet yasaları tarafından korunmaktadır.</p>
+                            
+                            <p class="mb-4">Kullanıcı olarak:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>İçeriğimizi kopyalayamaz, değiştiremez, dağıtamaz veya ticari amaçla kullanamazsınız (açıkça izin verilmediği sürece).</li>
+                                <li>Hizmetlerimizi kullanarak yüklediğiniz veya oluşturduğunuz içeriğin haklarını elinizde tutarsınız, ancak bize bu içeriği hizmetlerimizin sağlanması amacıyla kullanma, kopyalama, değiştirme ve dağıtma hakkı verirsiniz.</li>
+                                <li>Başkalarının fikri mülkiyet haklarını ihlal eden içerik yüklemeyeceğinizi kabul edersiniz.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Fikri mülkiyet haklarının ihlali durumunda, lütfen aşağıdaki iletişim bilgilerini kullanarak bize bildirin. Geçerli ihlal bildirimleri üzerine, ilgili içeriği kaldırmak için gerekli adımları atacağız.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Service Restrictions -->
+                    <section id="hizmet-kisitlama" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">5. Hizmet Kısıtlamaları</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans, hizmetlerinin kullanımına ilişkin aşağıdaki kısıtlamaları uygular:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Hizmetlerimizi, bu kullanım koşullarında belirtilen amaçlar dışında kullanamazsınız.</li>
+                                <li>Hizmetlerimizi, üçüncü taraf ürün veya hizmetleri için reklam veya tanıtım amacıyla kullanamazsınız (yazılı iznimiz olmadan).</li>
+                                <li>Hizmetlerimizin güvenliğini tehlikeye atacak veya sistemlerimize zarar verecek faaliyetlerde bulunamazsınız.</li>
+                                <li>Hizmetlerimize erişimi engelleyen veya kısıtlayan güvenlik önlemlerini aşmaya çalışamazsınız.</li>
+                                <li>Hizmetlerimizi, başkalarının gizlilik haklarını ihlal edecek şekilde kullanamazsınız.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Bozkurt Ajans, bu kısıtlamaları ihlal eden kullanıcıların hesaplarını askıya alma veya sonlandırma ve gerekli durumlarda yasal işlem başlatma hakkını saklı tutar.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Payment Terms -->
+                    <section id="odeme-kosul" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">6. Ödeme Koşulları</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans'in ücretli hizmetlerini kullanmayı seçtiğinizde, aşağıdaki ödeme koşullarını kabul etmiş olursunuz:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Tüm fiyatlar Türk Lirası (TL) cinsinden belirtilmiştir ve geçerli vergiler dahildir.</li>
+                                <li>Ödemeler, web sitemizde belirtilen ödeme yöntemleri aracılığıyla yapılabilir.</li>
+                                <li>Abonelik tabanlı hizmetlerde, aboneliğiniz otomatik olarak yenilenir ve iptal edilene kadar her dönem için ücretlendirilir.</li>
+                                <li>Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işlemi, mevcut ödeme döneminin sonunda geçerli olacaktır.</li>
+                                <li>İade politikamız: Hizmetlerimizden memnun kalmamanız durumunda, satın alma tarihinden itibaren 14 gün içinde iade talebinde bulunabilirsiniz. İade talepleri, her durum için ayrı ayrı değerlendirilir.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Fiyatlarımızda değişiklik yapma hakkını saklı tutarız. Fiyat değişiklikleri, mevcut abonelikler için bir sonraki yenileme döneminde geçerli olacaktır ve önceden bildirilecektir.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Privacy and Data Security -->
+                    <section id="gizlilik-guvenlik" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">7. Gizlilik ve Veri Güvenliği</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında detaylı bilgi için lütfen <a href="#" class="text-primary hover:underline">Gizlilik Politikamızı</a> inceleyin.</p>
+                            
+                            <p class="mb-4">Gizlilik ve veri güvenliği konusundaki temel ilkelerimiz şunlardır:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Kişisel verilerinizi yalnızca hizmetlerimizi sağlamak, geliştirmek ve yasal yükümlülüklerimizi yerine getirmek için toplar ve kullanırız.</li>
+                                <li>Verilerinizi korumak için endüstri standardı güvenlik önlemleri uygularız.</li>
+                                <li>Kişisel verilerinizi, açık izniniz olmadan üçüncü taraflarla paylaşmayız (yasal zorunluluklar hariç).</li>
+                                <li>Kişisel verilerinize erişme, düzeltme veya silme hakkınız vardır.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Hizmetlerimizi kullanarak, Gizlilik Politikamızda belirtilen veri işleme uygulamalarını kabul etmiş olursunuz.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Contract Changes -->
+                    <section id="sozlesme-degisiklik" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">8. Sözleşme Değişiklikleri</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bozkurt Ajans, bu kullanım koşullarını dilediği zaman değiştirme hakkını saklı tutar. Değişiklikler aşağıdaki şekilde yönetilir:</p>
+                            
+                            <ul class="list-disc pl-6 mb-4 space-y-2">
+                                <li>Önemli değişiklikler, web sitemizde duyurulacak ve/veya kayıtlı kullanıcılara e-posta ile bildirilecektir.</li>
+                                <li>Değişiklikler, web sitemizde yayınlandıktan sonra geçerli olacaktır.</li>
+                                <li>Değişikliklerden sonra hizmetlerimizi kullanmaya devam etmeniz, güncellenmiş koşulları kabul ettiğiniz anlamına gelir.</li>
+                                <li>Değişiklikleri kabul etmiyorsanız, hizmetlerimizi kullanmayı bırakmalısınız.</li>
+                            </ul>
+                            
+                            <p class="mb-4">Kullanım koşullarımızın en güncel versiyonunu düzenli olarak kontrol etmenizi öneririz.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Contact Information -->
+                    <section id="iletisim-bilgi" class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800">9. İletişim Bilgileri</h2>
+                        <div class="prose max-w-none text-gray-700">
+                            <p class="mb-4">Bu kullanım koşulları veya hizmetlerimiz hakkında sorularınız veya endişeleriniz varsa, lütfen bizimle aşağıdaki kanallardan iletişime geçin:</p>
+                            
+                            <ul class="list-none space-y-3 mb-4">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 text-primary">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    <span>Bağdat Caddesi No: 123, Kadıköy, İstanbul</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 text-primary">
+                                        <i class="ri-phone-line"></i>
+                                    </div>
+                                    <span>+90 (212) 456 78 90</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 text-primary">
+                                        <i class="ri-mail-line"></i>
+                                    </div>
+                                    <span>info@bozkurtajans.com</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 flex items-center justify-center mr-2 text-primary">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    <span>Pazartesi - Cuma: 09:00 - 18:00</span>
+                                </li>
+                            </ul>
+                            
+                            <p class="mb-4">Yasal bildirimler ve resmi iletişim için, lütfen yukarıdaki posta adresine yazılı bildirim gönderin.</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Accept Button -->
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <div class="flex flex-col items-center">
+                            <p class="text-gray-700 mb-6 text-center max-w-2xl">Bu kullanım koşullarını okuduğunuzu ve kabul ettiğinizi onaylamak için aşağıdaki butona tıklayın.</p>
+                            <button id="accept-terms" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Kabul Ediyorum</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="pt-20 pb-10 gradient-bg text-white">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <div>
+                <a href="#" class="text-3xl font-['Pacifico'] mb-6 inline-block">Bozkurt Ajans</a>
+                <p class="opacity-80 mb-6">Yaratıcı fikirlerinizi hayata geçirmek için profesyonel grafik tasarım çözümleri sunuyoruz.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                        <i class="ri-facebook-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                        <i class="ri-twitter-x-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                        <i class="ri-linkedin-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-6">Hızlı Bağlantılar</h3>
+                <ul class="space-y-3">
+                    <li><a href="index.html" data-readdy="true" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Ana Sayfa</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hizmetlerimiz</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Portfolyo</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">İletişim</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hakkımızda</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-6">Hizmetlerimiz</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Marka Kimliği</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Web Tasarımı</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Reklam Tasarımı</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Basılı Materyaller</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hareketli Grafik</a></li>
+                    <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">UI/UX Tasarımı</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-6">Bültenimize Abone Olun</h3>
+                <p class="opacity-80 mb-4">En son haberler, güncellemeler ve özel teklifler için bültenimize abone olun.</p>
+                <form class="mb-4">
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta adresiniz" class="w-full px-4 py-3 bg-white/10 border-none rounded-l-lg text-white placeholder-white/60 focus:outline-none">
+                        <button type="submit" class="bg-white text-primary px-4 py-3 !rounded-r-lg font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Abone Ol</button>
+                    </div>
+                </form>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="ri-visa-fill text-2xl"></i>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="ri-mastercard-fill text-2xl"></i>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="ri-paypal-fill text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-white/20 text-center">
+            <p class="opacity-80">© 2025 Bozkurt Ajans. Tüm hakları saklıdır. | <a href="#" class="hover:underline">Gizlilik Politikası</a> | <a href="#" class="hover:underline">Kullanım Koşulları</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-top" class="scroll-top w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full shadow-lg">
+    <i class="ri-arrow-up-line ri-lg"></i>
+</button>
+
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    
+    hamburger.addEventListener('click', function() {
+        mobileMenu.classList.add('open');
+        hamburger.classList.add('open');
+    });
+    
+    closeMenu.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+    });
+});
+</script>
+
+<script id="scroll-top-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollTopBtn = document.getElementById('scroll-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+    
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+
+<script id="toc-highlight-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section[id]');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    
+    window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
+<script id="accept-terms-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const acceptButton = document.getElementById('accept-terms');
+    
+    acceptButton.addEventListener('click', function() {
+        // Show acceptance confirmation
+        const confirmation = document.createElement('div');
+        confirmation.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black/50';
+        confirmation.innerHTML = `
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-md text-center">
+                <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                    <i class="ri-check-line ri-2x"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Teşekkürler!</h3>
+                <p class="text-gray-600 mb-6">Kullanım koşullarını kabul ettiniz. Artık hizmetlerimizi kullanabilirsiniz.</p>
+                <button class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap close-modal">Tamam</button>
+            </div>
+        `;
+        
+        document.body.appendChild(confirmation);
+        
+        // Add event listener to close button
+        confirmation.querySelector('.close-modal').addEventListener('click', function() {
+            confirmation.remove();
+            window.location.href = "index.html";
+        });
+    });
+});
+</script>
+
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

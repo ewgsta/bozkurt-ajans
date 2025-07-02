@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası - Bozkurt Ajans</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#8A2BE2',secondary:'#00BFFF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #8A2BE2, #00BFFF);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #8A2BE2, #00BFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .neon-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8A2BE2, #00BFFF, transparent);
+        }
+        
+        .policy-link {
+            color: #8A2BE2;
+            transition: all 0.3s ease;
+        }
+        
+        .policy-link:hover {
+            text-decoration: underline;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-link:hover {
+            background-color: rgba(138, 43, 226, 0.1);
+            color: #8A2BE2;
+        }
+        
+        .toc-link.active {
+            background-color: rgba(138, 43, 226, 0.1);
+            color: #8A2BE2;
+            font-weight: 500;
+            border-left: 3px solid #8A2BE2;
+        }
+        
+        .policy-section {
+            scroll-margin-top: 100px;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <a href="index.html" data-readdy="true" class="text-3xl font-['Pacifico'] text-primary">Bozkurt Ajans</a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Ana Sayfa</a>
+                    <a href="index.html#services" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Hizmetler</a>
+                    <a href="index.html#portfolio" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">Portfolyo</a>
+                    <a href="index.html#contact" data-readdy="true" class="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">İletişim</a>
+                    <a href="https://discord.gg/example" target="_blank" rel="noopener noreferrer" class="bg-white text-primary px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">İletişim </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <div class="hamburger" id="hamburger-menu">
+                        <span class="block h-0.5 w-6 bg-gray-800 mb-1.5"></span>
+                        <span class="block h-0.5 w-6 bg-gray-800 mb-1.5"></span>
+                        <span class="block h-0.5 w-6 bg-gray-800"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full md:w-64 bg-white shadow-lg z-50">
+            <div class="flex justify-end p-4">
+                <button id="close-menu" class="text-gray-800 hover:text-primary">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-close-line ri-lg"></i>
+                    </div>
+                </button>
+            </div>
+            <div class="flex flex-col px-6 py-4 space-y-6">
+                <a href="index.html" data-readdy="true" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Ana Sayfa</a>
+                <a href="index.html#services" data-readdy="true" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Hizmetler</a>
+                <a href="index.html#portfolio" data-readdy="true" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">Portfolyo</a>
+                <a href="index.html#contact" data-readdy="true" class="text-gray-800 hover:text-primary transition-colors duration-300 font-medium">İletişim</a>
+                <a href="index.html#contact" data-readdy="true" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all duration-300 text-center whitespace-nowrap">Ücretsiz Danışmanlık</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center mb-4">
+                <a href="index.html" data-readdy="true" class="flex items-center text-gray-600 hover:text-primary transition-colors duration-300">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-arrow-left-line"></i>
+                    </div>
+                    <span>Ana Sayfaya Dön</span>
+                </a>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Gizlilik Politikası</h1>
+            <p class="text-gray-600 max-w-3xl">Bu gizlilik politikası, kişisel verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklamaktadır. Hizmetlerimizi kullanarak, bu politikada belirtilen uygulamaları kabul etmiş sayılırsınız.</p>
+            <div class="flex items-center mt-6 text-sm text-gray-500">
+                <div class="flex items-center mr-6">
+                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                        <i class="ri-calendar-line"></i>
+                    </div>
+                    <span>Son Güncelleme: 02 Temmuz 2025</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <span>Okuma Süresi: ~10 dakika</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Table of Contents - Desktop -->
+                <div class="hidden lg:block w-full lg:w-1/4 sticky top-32 self-start">
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">İçindekiler</h3>
+                        <nav id="toc" class="space-y-2">
+                            <a href="#section-1" class="toc-link active">1. Kişisel Verilerin Toplanması</a>
+                            <a href="#section-2" class="toc-link">2. Verilerin Kullanımı ve İşlenmesi</a>
+                            <a href="#section-3" class="toc-link">3. Çerezler ve Takip Teknolojileri</a>
+                            <a href="#section-4" class="toc-link">4. Üçüncü Taraf Hizmetleri</a>
+                            <a href="#section-5" class="toc-link">5. Veri Güvenliği</a>
+                            <a href="#section-6" class="toc-link">6. Kullanıcı Hakları</a>
+                            <a href="#section-7" class="toc-link">7. İletişim Bilgileri</a>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div class="w-full lg:w-3/4">
+                    <!-- Section 1 -->
+                    <div id="section-1" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">1. Kişisel Verilerin Toplanması</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Bozkurt Ajans olarak, hizmetlerimizi sunabilmek ve iyileştirebilmek için çeşitli kişisel verileri toplamaktayız. Topladığımız kişisel veriler aşağıdaki kategorilere ayrılabilir:</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">1.1 Doğrudan Sağladığınız Bilgiler</h3>
+                            <p class="text-gray-700">Hizmetlerimizi kullanırken veya bizimle iletişime geçtiğinizde doğrudan bize sağladığınız bilgiler:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>İsim, soyisim, e-posta adresi, telefon numarası gibi iletişim bilgileri</li>
+                                <li>Şirket adı, sektör, pozisyon gibi profesyonel bilgiler</li>
+                                <li>Fatura bilgileri ve ödeme detayları</li>
+                                <li>İletişim formları veya e-posta yoluyla gönderdiğiniz mesajlar</li>
+                                <li>Hesap oluşturma sürecinde belirlediğiniz kullanıcı adı ve şifre</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">1.2 Otomatik Olarak Toplanan Bilgiler</h3>
+                            <p class="text-gray-700">Web sitemizi veya hizmetlerimizi kullandığınızda otomatik olarak toplanan bilgiler:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>IP adresi, tarayıcı türü, işletim sistemi gibi cihaz bilgileri</li>
+                                <li>Web sitemizdeki davranışlarınız ve etkileşimleriniz</li>
+                                <li>Ziyaret ettiğiniz sayfalar ve bu sayfalarda geçirdiğiniz süre</li>
+                                <li>Referans URL'leri (hangi siteden geldiğiniz)</li>
+                                <li>Coğrafi konum bilgileri</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">1.3 Üçüncü Taraflardan Alınan Bilgiler</h3>
+                            <p class="text-gray-700">Bazı durumlarda, aşağıdaki üçüncü taraf kaynaklardan bilgi alabiliriz:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>İş ortaklarımız ve alt yüklenicilerimiz</li>
+                                <li>Sosyal medya platformları (izin verdiğiniz takdirde)</li>
+                                <li>Analitik sağlayıcılar ve reklam ağları</li>
+                                <li>Kamuya açık veri tabanları</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2 -->
+                    <div id="section-2" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">2. Verilerin Kullanımı ve İşlenmesi</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Topladığımız kişisel verileri aşağıdaki amaçlar doğrultusunda kullanmaktayız:</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">2.1 Hizmet Sunumu</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Talep ettiğiniz hizmetleri sağlamak ve yönetmek</li>
+                                <li>Hesabınızı oluşturmak ve yönetmek</li>
+                                <li>Siparişlerinizi işleme almak ve tamamlamak</li>
+                                <li>Müşteri desteği sağlamak ve sorularınızı yanıtlamak</li>
+                                <li>Sözleşmesel yükümlülüklerimizi yerine getirmek</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">2.2 İletişim</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Hizmetlerimiz hakkında bilgilendirmek</li>
+                                <li>Önemli güncellemeler ve değişiklikler hakkında haberdar etmek</li>
+                                <li>Teknik destek ve müşteri hizmetleri sağlamak</li>
+                                <li>İzin verdiğiniz takdirde pazarlama iletişimleri göndermek</li>
+                                <li>Anketler ve geri bildirim formları göndermek</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">2.3 Hizmet İyileştirme ve Analiz</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Hizmetlerimizi geliştirmek ve iyileştirmek</li>
+                                <li>Kullanıcı deneyimini analiz etmek ve optimize etmek</li>
+                                <li>Web sitesi performansını izlemek ve teknik sorunları gidermek</li>
+                                <li>Kullanım istatistiklerini ve trendleri analiz etmek</li>
+                                <li>Yeni ürün ve hizmetler geliştirmek</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">2.4 Yasal Yükümlülükler</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Yasal yükümlülüklerimizi yerine getirmek</li>
+                                <li>Yasal taleplere ve düzenleyici gereksinimlere uymak</li>
+                                <li>Dolandırıcılık ve kötüye kullanımı önlemek ve tespit etmek</li>
+                                <li>Haklarımızı korumak ve savunmak</li>
+                            </ul>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Önemli Not:</strong> Kişisel verilerinizi, yukarıda belirtilen amaçlar dışında kullanmayacağız. Verilerinizin işlenme amacında önemli bir değişiklik olması durumunda, sizi bilgilendireceğiz ve gerektiğinde yeniden izninizi alacağız.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3 -->
+                    <div id="section-3" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">3. Çerezler ve Takip Teknolojileri</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Web sitemizde ve hizmetlerimizde çerezler ve benzer takip teknolojileri kullanmaktayız. Bu teknolojiler, size daha iyi bir kullanıcı deneyimi sunmamıza ve hizmetlerimizi geliştirmemize yardımcı olmaktadır.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">3.1 Çerez Türleri</h3>
+                            <p class="text-gray-700">Web sitemizde kullandığımız çerez türleri:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li><strong>Zorunlu Çerezler:</strong> Web sitemizin düzgün çalışması için gerekli olan çerezlerdir. Bu çerezler olmadan, web sitesi veya hizmetin belirli işlevleri düzgün çalışmayabilir.</li>
+                                <li><strong>Performans Çerezleri:</strong> Ziyaretçilerin web sitemizi nasıl kullandığı hakkında bilgi toplayan ve siteyi geliştirmemize yardımcı olan çerezlerdir.</li>
+                                <li><strong>İşlevsellik Çerezleri:</strong> Kullanıcıların web sitesindeki tercihlerini hatırlamamıza olanak tanıyan çerezlerdir.</li>
+                                <li><strong>Hedefleme/Reklam Çerezleri:</strong> Kullanıcılara ilgi alanlarına göre reklamlar göstermek için kullanılan çerezlerdir.</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">3.2 Çerez Kontrolü</h3>
+                            <p class="text-gray-700">Çoğu web tarayıcısı, çerezleri kabul etmeyi veya reddetmeyi seçmenize olanak tanır. Tarayıcınızın ayarlarını değiştirerek çerezleri kontrol edebilirsiniz. Ancak, çerezleri devre dışı bırakırsanız, web sitemizin bazı özellikleri düzgün çalışmayabilir.</p>
+                            
+                            <p class="text-gray-700 mt-4">Çerezleri nasıl kontrol edeceğiniz hakkında daha fazla bilgi için tarayıcınızın yardım sayfasını ziyaret edebilirsiniz:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li><a href="#" class="policy-link">Google Chrome</a></li>
+                                <li><a href="#" class="policy-link">Mozilla Firefox</a></li>
+                                <li><a href="#" class="policy-link">Safari</a></li>
+                                <li><a href="#" class="policy-link">Microsoft Edge</a></li>
+                                <li><a href="#" class="policy-link">Opera</a></li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">3.3 Diğer Takip Teknolojileri</h3>
+                            <p class="text-gray-700">Çerezlere ek olarak, web işaretçileri (web beacons), piksel etiketleri ve yerel depolama gibi diğer takip teknolojilerini de kullanabiliriz. Bu teknolojiler, web sitemizin ve iletişimlerimizin etkinliğini ölçmemize ve kullanıcı deneyimini iyileştirmemize yardımcı olur.</p>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Çerez Politikamız:</strong> Çerezler ve diğer takip teknolojileri hakkında daha ayrıntılı bilgi için <a href="#" class="policy-link">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 4 -->
+                    <div id="section-4" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">4. Üçüncü Taraf Hizmetleri</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Hizmetlerimizi sağlamak ve geliştirmek için çeşitli üçüncü taraf hizmet sağlayıcılarla çalışmaktayız. Bu üçüncü taraflar, kişisel verilerinize erişebilir ve bunları işleyebilir.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">4.1 Hizmet Sağlayıcılar</h3>
+                            <p class="text-gray-700">Aşağıdaki kategorilerdeki hizmet sağlayıcılarla çalışabiliriz:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Hosting ve altyapı hizmetleri</li>
+                                <li>Ödeme işleme hizmetleri</li>
+                                <li>Müşteri ilişkileri yönetimi (CRM) sistemleri</li>
+                                <li>E-posta ve iletişim hizmetleri</li>
+                                <li>Analitik ve izleme hizmetleri</li>
+                                <li>Pazarlama ve reklam hizmetleri</li>
+                                <li>Müşteri destek hizmetleri</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">4.2 Veri Paylaşımı</h3>
+                            <p class="text-gray-700">Üçüncü taraf hizmet sağlayıcılarla paylaştığımız veriler, yalnızca bizim adımıza belirli hizmetleri gerçekleştirmek için gerekli olan bilgilerle sınırlıdır. Bu hizmet sağlayıcılar, verilerinizi gizli tutmayı ve yalnızca bizim talimatlarımız doğrultusunda kullanmayı kabul ederler.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">4.3 Sosyal Medya Entegrasyonları</h3>
+                            <p class="text-gray-700">Web sitemizde sosyal medya özellikleri (paylaşım düğmeleri, sosyal medya widget'ları vb.) bulunabilir. Bu özellikler, IP adresinizi toplayabilir, web sitemizde hangi sayfaları ziyaret ettiğinizi izleyebilir ve işlevlerini etkinleştirmek için bir çerez ayarlayabilir.</p>
+                            
+                            <p class="text-gray-700 mt-4">Sosyal medya etkileşimleriniz, ilgili sosyal medya platformlarının gizlilik politikalarına tabidir. Bu platformların verilerinizi nasıl kullandığını anlamak için ilgili gizlilik politikalarını incelemenizi öneririz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">4.4 Üçüncü Taraf Web Siteleri</h3>
+                            <p class="text-gray-700">Web sitemiz, üçüncü taraf web sitelerine bağlantılar içerebilir. Bu web sitelerinin gizlilik uygulamalarından sorumlu değiliz. Bu siteleri ziyaret ettiğinizde, kendi gizlilik politikalarını okumanızı öneririz.</p>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Önemli Bilgi:</strong> Kişisel verilerinizi, yasal bir zorunluluk olmadıkça veya açık izniniz olmadan üçüncü taraflarla paylaşmayız. Verilerinizi paylaşmamızı gerektiren yasal bir süreç olması durumunda, mümkün olduğunda sizi bilgilendireceğiz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 5 -->
+                    <div id="section-5" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">5. Veri Güvenliği</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Kişisel verilerinizin güvenliğini sağlamak için uygun teknik ve organizasyonel önlemler almaktayız. Verilerinizi kayıp, yetkisiz erişim, değiştirme ve ifşa risklerine karşı korumak için çeşitli güvenlik önlemleri uygulamaktayız.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">5.1 Güvenlik Önlemleri</h3>
+                            <p class="text-gray-700">Uyguladığımız güvenlik önlemleri arasında şunlar bulunmaktadır:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Veri şifreleme teknolojileri (SSL/TLS)</li>
+                                <li>Güvenli ağ mimarisi ve güvenlik duvarları</li>
+                                <li>Düzenli güvenlik değerlendirmeleri ve testleri</li>
+                                <li>Erişim kontrolü ve kimlik doğrulama mekanizmaları</li>
+                                <li>Veri yedekleme ve kurtarma prosedürleri</li>
+                                <li>Personel eğitimi ve farkındalık programları</li>
+                            </ul>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">5.2 Veri İhlali Bildirimleri</h3>
+                            <p class="text-gray-700">Kişisel verilerinizi etkileyen bir veri ihlali durumunda, yürürlükteki yasalar uyarınca gerekli bildirimleri yapacağız. Veri ihlalinin niteliği, kapsamı ve potansiyel etkileri hakkında sizi bilgilendireceğiz ve zararı en aza indirmek için atmanız gereken adımlar konusunda rehberlik sağlayacağız.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">5.3 Veri Saklama</h3>
+                            <p class="text-gray-700">Kişisel verilerinizi, yalnızca toplandıkları amaç için gerekli olan süre boyunca saklarız. Saklama süreleri, aşağıdaki faktörlere bağlı olarak belirlenir:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Yasal ve düzenleyici gereksinimler</li>
+                                <li>Sözleşmesel yükümlülükler</li>
+                                <li>İş ihtiyaçları ve amaçları</li>
+                                <li>Potansiyel anlaşmazlıklar veya yasal talepler</li>
+                            </ul>
+                            
+                            <p class="text-gray-700 mt-4">Verilerinizin artık gerekli olmadığı durumlarda, bu verileri güvenli bir şekilde sileriz veya anonim hale getiririz.</p>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Güvenlik Hatırlatması:</strong> İnternet üzerinden veri iletimi tamamen güvenli değildir. En iyi çabalarımıza rağmen, kişisel verilerinizin güvenliğini %100 garanti edemeyiz. Hesap bilgilerinizi korumak için güçlü şifreler kullanmanızı ve şifrelerinizi başkalarıyla paylaşmamanızı öneririz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 6 -->
+                    <div id="section-6" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">6. Kullanıcı Hakları</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Kişisel verilerinizle ilgili olarak belirli haklara sahipsiniz. Bu haklar, bulunduğunuz ülke veya bölgeye göre değişebilir. Genel olarak, aşağıdaki haklara sahip olabilirsiniz:</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.1 Erişim Hakkı</h3>
+                            <p class="text-gray-700">Hakkınızda hangi kişisel verileri işlediğimizi öğrenme ve bu verilerin bir kopyasını alma hakkına sahipsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.2 Düzeltme Hakkı</h3>
+                            <p class="text-gray-700">Hakkınızda tuttuğumuz yanlış veya eksik kişisel verilerin düzeltilmesini talep etme hakkına sahipsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.3 Silme Hakkı (Unutulma Hakkı)</h3>
+                            <p class="text-gray-700">Belirli koşullar altında, kişisel verilerinizin silinmesini talep etme hakkına sahipsiniz. Ancak, yasal yükümlülüklerimiz veya meşru çıkarlarımız nedeniyle bazı verileri saklamaya devam etmemiz gerekebilir.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.4 İşleme Sınırlandırma Hakkı</h3>
+                            <p class="text-gray-700">Belirli koşullar altında, kişisel verilerinizin işlenmesini sınırlandırmamızı talep etme hakkına sahipsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.5 Veri Taşınabilirliği Hakkı</h3>
+                            <p class="text-gray-700">Bize sağladığınız kişisel verileri yapılandırılmış, yaygın olarak kullanılan ve makine tarafından okunabilir bir formatta alma ve bu verileri başka bir veri sorumlusuna aktarma hakkına sahipsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.6 İtiraz Hakkı</h3>
+                            <p class="text-gray-700">Meşru çıkarlarımıza dayalı olarak kişisel verilerinizi işlememize itiraz etme hakkına sahipsiniz. Ayrıca, doğrudan pazarlama amacıyla verilerinizin işlenmesine her zaman itiraz edebilirsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.7 Otomatik Karar Vermeye İtiraz</h3>
+                            <p class="text-gray-700">Sizinle ilgili hukuki sonuçlar doğuran veya sizi önemli ölçüde etkileyen otomatik karar verme süreçlerine tabi olmama hakkına sahipsiniz.</p>
+                            
+                            <h3 class="text-xl font-semibold mt-6 mb-3">6.8 Haklarınızı Nasıl Kullanabilirsiniz</h3>
+                            <p class="text-gray-700">Yukarıda belirtilen haklarınızdan herhangi birini kullanmak için, aşağıdaki İletişim Bilgileri bölümünde belirtilen yöntemlerle bizimle iletişime geçebilirsiniz. Talebinizi aldıktan sonra, kimliğinizi doğrulayacak ve talebinizi yasal süre içerisinde yanıtlayacağız.</p>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Şikayet Hakkı:</strong> Kişisel verilerinizin işlenmesiyle ilgili bir endişeniz varsa, öncelikle bizimle iletişime geçmenizi öneririz. Ancak, yetkili veri koruma otoritesine şikayette bulunma hakkına da sahipsiniz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 7 -->
+                    <div id="section-7" class="mb-12 policy-section">
+                        <h2 class="text-2xl font-bold mb-6">7. İletişim Bilgileri</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Gizlilik politikamız veya kişisel verilerinizin işlenmesiyle ilgili herhangi bir sorunuz, endişeniz veya talebiniz varsa, lütfen bizimle iletişime geçmekten çekinmeyin.</p>
+                            
+                            <div class="bg-white shadow-md rounded-lg p-6 mt-6">
+                                <h3 class="text-xl font-semibold mb-4">Bozkurt Ajans</h3>
+                                <ul class="space-y-3 text-gray-700">
+                                    <li class="flex items-start">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+                                            <i class="ri-map-pin-line text-primary"></i>
+                                        </div>
+                                        <span>Bağdat Caddesi No: 123, Kadıköy, İstanbul</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+                                            <i class="ri-phone-line text-primary"></i>
+                                        </div>
+                                        <span>+90 (212) 456 78 90</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+                                            <i class="ri-mail-line text-primary"></i>
+                                        </div>
+                                        <span>gizlilik@bozkurtajans.com</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+                                            <i class="ri-global-line text-primary"></i>
+                                        </div>
+                                        <span>www.bozkurtajans.com</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mt-8 mb-3">Veri Koruma Sorumlusu</h3>
+                            <p class="text-gray-700">Veri koruma konularıyla ilgili sorularınız için veri koruma sorumlumuza aşağıdaki e-posta adresi üzerinden ulaşabilirsiniz:</p>
+                            <p class="text-gray-700 mt-2"><a href="mailto:veri-koruma@bozkurtajans.com" class="policy-link">veri-koruma@bozkurtajans.com</a></p>
+                            
+                            <div class="bg-gray-50 p-6 rounded-lg mt-6">
+                                <p class="text-gray-700"><strong>Yanıt Süresi:</strong> Gizlilik ile ilgili taleplerinize en geç 30 gün içerisinde yanıt vermeye çalışacağız. Karmaşık veya çok sayıda talep olması durumunda, bu süreyi uzatmamız gerekebilir. Böyle bir durumda sizi bilgilendireceğiz.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Policy Updates -->
+                    <div class="mb-12">
+                        <h2 class="text-2xl font-bold mb-6">Gizlilik Politikası Güncellemeleri</h2>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Politikada önemli değişiklikler yapılması durumunda, web sitemizde bir bildirim yayınlayacağız ve gerektiğinde size doğrudan bildirim göndereceğiz.</p>
+                            
+                            <p class="text-gray-700">Bu politikanın en son ne zaman güncellendiğini görmek için, bu sayfanın üst kısmındaki "Son Güncelleme" tarihine bakabilirsiniz.</p>
+                            
+                            <p class="text-gray-700">Hizmetlerimizi kullanmaya devam etmeniz, güncellenmiş gizlilik politikasını kabul ettiğiniz anlamına gelir. Değişiklikleri kabul etmiyorsanız, lütfen hizmetlerimizi kullanmayı bırakın ve hesabınızı kapatın.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Table of Contents - Mobile -->
+                    <div class="lg:hidden w-full mb-12">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4">İçindekiler</h3>
+                            <nav class="space-y-2">
+                                <a href="#section-1" class="toc-link">1. Kişisel Verilerin Toplanması</a>
+                                <a href="#section-2" class="toc-link">2. Verilerin Kullanımı ve İşlenmesi</a>
+                                <a href="#section-3" class="toc-link">3. Çerezler ve Takip Teknolojileri</a>
+                                <a href="#section-4" class="toc-link">4. Üçüncü Taraf Hizmetleri</a>
+                                <a href="#section-5" class="toc-link">5. Veri Güvenliği</a>
+                                <a href="#section-6" class="toc-link">6. Kullanıcı Hakları</a>
+                                <a href="#section-7" class="toc-link">7. İletişim Bilgileri</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="index.html" data-readdy="true" class="text-3xl font-['Pacifico'] mb-6 inline-block">Bozkurt Ajans</a>
+                    <p class="opacity-80 mb-6">Yaratıcı fikirlerinizi hayata geçirmek için profesyonel grafik tasarım çözümleri sunuyoruz.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Hızlı Bağlantılar</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#home" data-readdy="true" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Ana Sayfa</a></li>
+                        <li><a href="index.html#services" data-readdy="true" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hizmetlerimiz</a></li>
+                        <li><a href="index.html#portfolio" data-readdy="true" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Portfolyo</a></li>
+                        <li><a href="index.html#contact" data-readdy="true" class="opacity-80 hover:opacity-100 transition-opacity duration-300">İletişim</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hakkımızda</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Hizmetlerimiz</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Marka Kimliği</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Web Tasarımı</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Reklam Tasarımı</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Basılı Materyaller</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">Hareketli Grafik</a></li>
+                        <li><a href="#" class="opacity-80 hover:opacity-100 transition-opacity duration-300">UI/UX Tasarımı</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Bültenimize Abone Olun</h3>
+                    <p class="opacity-80 mb-4">En son haberler, güncellemeler ve özel teklifler için bültenimize abone olun.</p>
+                    <form class="mb-4">
+                        <div class="flex">
+                            <input type="email" placeholder="E-posta adresiniz" class="w-full px-4 py-3 bg-white/10 border-none rounded-l-lg text-white placeholder-white/60 focus:outline-none">
+                            <button type="submit" class="bg-white text-primary px-4 py-3 !rounded-r-lg font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap">Abone Ol</button>
+                        </div>
+                    </form>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <i class="ri-visa-fill text-2xl"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="ri-mastercard-fill text-2xl"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="ri-paypal-fill text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/20 text-center">
+                <p class="opacity-80">© 2025 Bozkurt Ajans. Tüm hakları saklıdır. | <a href="#" class="hover:underline">Gizlilik Politikası</a> | <a href="#" class="hover:underline">Kullanım Koşulları</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full shadow-lg">
+        <i class="ri-arrow-up-line ri-lg"></i>
+    </button>
+
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.getElementById('close-menu');
+            
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+            });
+            
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        });
+    </script>
+
+    <script id="scroll-top-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollTopBtn = document.getElementById('scroll-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script id="toc-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('.policy-section');
+            
+            // Highlight active section in TOC
+            function highlightActiveTocLink() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= (sectionTop - 150)) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightActiveTocLink);
+            
+            // Smooth scroll to section when clicking TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Initialize active TOC link
+            highlightActiveTocLink();
+        });
+    </script>
+</body>
+</html>
